@@ -2,12 +2,18 @@ import java.util.Random;
 import java.util.Stack;
 
 public class EncryptorAndDecryptor {
-    private static int count = 0;
-    private static int key = 6;
-    private static Stack<Integer> RandomNumStack = new Stack<Integer>();
+    private int count = 0;
+    private int key = 6;
+    private Stack<Integer> RandomNumStack = new Stack<Integer>();
+
+    public EncryptorAndDecryptor(int key) {
+        this.key = key;
+        this.RandomNumStack = new Stack<Integer>();
+        this.count = 0;
+    }
 
     //Encryptor method
-    public static String Encryptor(String text){
+    public String Encryptor(String text){
         Random random = new Random();
 
         char[] charecters = text.toCharArray();
@@ -31,7 +37,7 @@ public class EncryptorAndDecryptor {
 
     //Decryptor method
 
-    public static String Decryptor(String text){
+    public String Decryptor(String text){
         char[] decrypt1 = text.toCharArray();
         while(count-->0){
             for(int i = decrypt1.length-1 ; i>=0; i--){
@@ -44,9 +50,10 @@ public class EncryptorAndDecryptor {
 
     public static void main(String[] args) {
         String text = "Hello, How are You!!";
-        String EncryptedMessage = Encryptor(text);
+        EncryptorAndDecryptor crypto = new EncryptorAndDecryptor(6);
+        String EncryptedMessage = crypto.Encryptor(text);
         System.out.println("Encrypted: " + EncryptedMessage);
-        String DecryptedMessage = Decryptor(EncryptedMessage);
+        String DecryptedMessage = crypto.Decryptor(EncryptedMessage);
         System.out.println("Decrypted: " + DecryptedMessage);
     }
 }
